@@ -1,3 +1,6 @@
 name = "cf-worker"
 main = "src/api/server.ts"
 compatibility_date = "2023-06-16"
+
+
+[vars]

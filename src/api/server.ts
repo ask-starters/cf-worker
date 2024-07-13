@@ -8,6 +8,25 @@ const server = {
         const url = new URL(request.url);
         const search = url.searchParams;
         const pathname = url.pathname;
+        const req_headers = request.headers;
+        let req_body: any = null;
+        const errors: string[] = [];
+
+        if (request.method === "POST") {
+            // Get body
+            req_body = await request.json().catch((e) => {
+                console.warn("error at path " + pathname + " while parsing req body to json : ", String(e));
+                errors.push("error at path " + pathname + " while parsing req body to json : " + String(e));
+                return null;
+            });
+            if (!req_body) {
+                return send_json_res({
+                    code: 400,
+                    success: false,
+                    errors,
+                })
+            }
+        }
 
         if (request.method === "GET") {
             if (pathname === "/") {
@@ -20,6 +39,12 @@ const server = {
                 });
             }
         }
+
+        return send_json_res({
+            code: 404,
+            success: false,
+            errors: ["Path or method not defined"],
+        });
     }
 }
 
