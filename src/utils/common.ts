@@ -1,7 +1,7 @@
 import { OBJECT_TYPE } from "../types/common";
 
 // REF: https://developers.cloudflare.com/workers/examples/read-post/
-export const read_req_body = async (request: Request): Promise<{ success: true, type: "json", body: OBJECT_TYPE<any> } | { success: true, type: "text", body: string } | { success: false, errors: string[] }> => {
+export const read_req_body = async (request: Request): Promise<{ success: true, type: "json", body: OBJECT_TYPE } | { success: true, type: "text", body: string } | { success: false, errors: string[] }> => {
     const contentType = request.headers.get("content-type");
     if (contentType?.includes("application/json")) {
         return {
@@ -26,7 +26,7 @@ export const read_req_body = async (request: Request): Promise<{ success: true, 
     }
     else if (contentType?.includes("form")) {
         const formData = await request.formData();
-        const body: OBJECT_TYPE<any> = {};
+        const body: OBJECT_TYPE = {};
         for (const entry of formData.entries()) {
             body[entry[0]] = entry[1];
         }
