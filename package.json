@@ -1,6 +1,6 @@
 {
   "name": "backend",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "devDependencies": {
     "@cloudflare/workers-types": "^4.20240712.0",
     "typescript": "^5.5.3",
@@ -8,7 +8,8 @@
   },
   "private": true,
   "scripts": {
-    "start": "wrangler dev",
-    "deploy": "wrangler deploy"
+    "dev": "npx wrangler dev",
+    "deploy": "npx wrangler deploy",
+    "login": "npx wrangler login"
   }
 }
