@@ -1,0 +1,2 @@
+- api.ts is for connection from index and doing zod checks etc.
+- query.ts is for db query using some orm or directly

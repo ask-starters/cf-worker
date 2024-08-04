@@ -1,5 +1,5 @@
-import { Env } from "../types/common";
-import { send_json_res } from "../utils/response";
+import { Env } from "./types/common";
+import { send_json_res } from "./utils/response";
 
 
 const server = {

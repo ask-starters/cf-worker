@@ -9,7 +9,7 @@
   "private": true,
   "scripts": {
     "dev": "npx wrangler dev",
-    "deploy": "npx wrangler deploy",
+    "deploy": "npx wrangler deploy --minify",
     "login": "npx wrangler login"
   }
 }
