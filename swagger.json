@@ -5,9 +5,20 @@
     "version": "1.0.0",
     "description": "API documentation for Cloudflare Worker"
   },
+  "tags": [
+    {
+      "name": "Core",
+      "description": "Core API endpoints"
+    },
+    {
+      "name": "Documentation",
+      "description": "API documentation endpoints"
+    }
+  ],
   "paths": {
     "/": {
       "get": {
+        "tags": ["Core"],
         "summary": "Root endpoint",
         "description": "Returns a welcome message",
         "responses": {
@@ -43,6 +54,7 @@
         }
       },
       "post": {
+        "tags": ["Core"],
         "summary": "Echo endpoint",
         "description": "Returns the received request body",
         "requestBody": {
@@ -81,6 +93,44 @@
                       }
                     }
                   }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/swagger.json": {
+      "get": {
+        "tags": ["Documentation"],
+        "summary": "Swagger JSON",
+        "description": "Returns the Swagger/OpenAPI specification",
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api-playground": {
+      "get": {
+        "tags": ["Documentation"],
+        "summary": "API Playground",
+        "description": "Interactive API documentation UI",
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "text/html": {
+                "schema": {
+                  "type": "string"
                 }
               }
             }
