@@ -11,5 +11,9 @@
     "dev": "npx wrangler dev",
     "deploy": "npx wrangler deploy --minify",
     "login": "npx wrangler login"
+  },
+  "dependencies": {
+    "@hono/swagger-ui": "^0.5.1",
+    "hono": "^4.7.5"
   }
 }
