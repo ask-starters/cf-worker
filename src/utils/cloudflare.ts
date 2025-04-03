@@ -45,5 +45,3 @@ export const parse_request_body = async (request: Request): Promise<{ success: t
         };
     }
 }
-
-export default {};
