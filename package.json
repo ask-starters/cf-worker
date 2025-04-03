@@ -2,9 +2,9 @@
   "name": "backend",
   "version": "0.0.1",
   "devDependencies": {
-    "@cloudflare/workers-types": "^4.20240712.0",
-    "typescript": "^5.5.3",
-    "wrangler": "^3.64.0"
+    "@cloudflare/workers-types": "^4.20250403.0",
+    "typescript": "^5.8.2",
+    "wrangler": "^4.7.0"
   },
   "private": true,
   "scripts": {

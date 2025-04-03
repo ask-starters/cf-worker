@@ -1,36 +1,39 @@
-import { Env } from "./types/common";
-import { send_json_res } from "./utils/response";
+import { Env } from "./types/cloudflare";
+import { OBJECT_TYPE } from "./types/general";
+import { parse_request_body } from "./utils/cloudflare";
+import { generate_response } from "./utils/response";
 
 
 const server = {
     async fetch(request: Request, env: Env, ctx: ExecutionContext) {
 
         const url = new URL(request.url);
+        const headers = request.headers;
+        const method = request.method;
         const search = url.searchParams;
         const pathname = url.pathname;
-        const req_headers = request.headers;
-        let req_body: any = null;
+        const pathname_parts = pathname.split("/");
+        const ip = headers.get("cf-connecting-ip") ?? "N/A";
+        let req_body: string | OBJECT_TYPE | null = null;
         const errors: string[] = [];
 
-        if (request.method === "POST") {
+        if (method === "POST") {
             // Get body
-            req_body = await request.json().catch((e) => {
-                console.warn("error at path " + pathname + " while parsing req body to json : ", String(e));
-                errors.push("error at path " + pathname + " while parsing req body to json : " + String(e));
-                return null;
-            });
-            if (!req_body) {
-                return send_json_res({
+            const post_body = await parse_request_body(request);
+            if (!post_body.success) {
+                return generate_response({
                     code: 400,
                     success: false,
-                    errors,
+                    errors: post_body.errors,
                 })
             }
+
+            req_body = post_body.body;
         }
 
-        if (request.method === "GET") {
+        if (method === "GET") {
             if (pathname === "/") {
-                return send_json_res({
+                return generate_response({
                     code: 200,
                     success: true,
                     data: {
@@ -40,10 +43,10 @@ const server = {
             }
         }
 
-        return send_json_res({
+        return generate_response({
             code: 404,
             success: false,
-            errors: ["Path or method not defined"],
+            errors: [`API for ${method} ${pathname} not defined`],
         });
     }
 }

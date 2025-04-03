@@ -1,7 +1,7 @@
-import { OBJECT_TYPE } from "../types/common"
-import { DEFAULT_RES_ARR, DEFAULT_RES_SINGLE } from "../types/response"
+import { OBJECT_TYPE } from "../types/general"
+import { DEFAULT_RES_GENERAL } from "../types/response"
 
-export const send_json_res = (res: DEFAULT_RES_ARR<OBJECT_TYPE> | DEFAULT_RES_SINGLE<OBJECT_TYPE>) => {
+export const generate_response = (res: DEFAULT_RES_GENERAL<OBJECT_TYPE<any>>) => {
     return new Response(JSON.stringify(res), {
         headers: {
             "Access-Control-Allow-Origin": "*",

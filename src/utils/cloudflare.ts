@@ -1,7 +1,7 @@
-import { OBJECT_TYPE } from "../types/common";
+import { OBJECT_TYPE } from "../types/general";
 
 // REF: https://developers.cloudflare.com/workers/examples/read-post/
-export const read_req_body = async (request: Request): Promise<{ success: true, type: "json", body: OBJECT_TYPE } | { success: true, type: "text", body: string } | { success: false, errors: string[] }> => {
+export const parse_request_body = async (request: Request): Promise<{ success: true, type: "json", body: OBJECT_TYPE } | { success: true, type: "text", body: string } | { success: false, errors: string[] }> => {
     const contentType = request.headers.get("content-type");
     if (contentType?.includes("application/json")) {
         return {
