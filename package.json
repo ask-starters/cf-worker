@@ -1,5 +1,5 @@
 {
-  "name": "backend",
+  "name": "cf-worker",
   "version": "0.0.1",
   "devDependencies": {
     "@cloudflare/workers-types": "^4.20250403.0",
