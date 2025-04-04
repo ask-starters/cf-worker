@@ -6,7 +6,7 @@ export const setupNotFoundRoutes = (app: HonoApp) => {
         return c.json({
             code: 404,
             success: false,
-            message: 'Not Found'
+            message: `API for ${c.req.method} ${c.req.path} not defined`
         });
     });
 };
