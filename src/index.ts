@@ -7,8 +7,10 @@ import { setupNotFoundRoutes } from './api/not-found';
 import { setupLogger } from './middleware/logger';
 import { setupCors } from './middleware/cors';
 
+import { EnvVars } from './types/cloudflare';
 
-const app = new Hono();
+
+const app = new Hono<{ Bindings: EnvVars }>();
 
 setupLogger(app);
 setupCors(app);

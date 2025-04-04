@@ -1,8 +1,11 @@
-import { Hono } from 'hono';
 import { swaggerUI } from '@hono/swagger-ui';
+
 import swaggerJson from '../../swagger.json';
 
-export const setupSwaggerRoutes = (app: Hono) => {
+import { HonoApp } from '../types/cloudflare';
+
+
+export const setupSwaggerRoutes = (app: HonoApp) => {
     app.get('/swagger.json', (c) => {
         return c.json(swaggerJson);
     });

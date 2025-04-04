@@ -1,6 +1,7 @@
-import { Hono } from 'hono';
+import { HonoApp } from '../types/cloudflare';
 
-export const setupRootRoutes = (app: Hono) => {
+
+export const setupRootRoutes = (app: HonoApp) => {
     app.get('/', (c) => {
         return c.json({
             code: 200,

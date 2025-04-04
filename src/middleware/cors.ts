@@ -1,7 +1,9 @@
-import { Hono } from 'hono';
 import { cors } from 'hono/cors';
 
-export const setupCors = (app: Hono) => {
+import { HonoApp } from '../types/cloudflare';
+
+
+export const setupCors = (app: HonoApp) => {
     app.use('*', cors({
         origin: '*',
         credentials: true,

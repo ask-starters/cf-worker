@@ -1,6 +1,7 @@
-import { Hono } from 'hono';
+import { HonoApp } from '../types/cloudflare';
 
-export const setupNotFoundRoutes = (app: Hono) => {
+
+export const setupNotFoundRoutes = (app: HonoApp) => {
     app.notFound((c) => {
         return c.json({
             code: 404,
